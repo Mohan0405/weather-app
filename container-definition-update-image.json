@@ -1,0 +1,41 @@
+[
+    {
+       "portMappings": [
+        {
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "containerPort": 3000
+        },
+        {
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "containerPort": 3000
+        }
+      ],
+      "cpu": 256,
+      "environment": [
+        {
+          "name": "MANAGEMENT_SERVER_PORT",
+          "value": "3000"
+        },
+        {
+          "name": "SERVER_PORT",
+          "value": "3000"
+        }
+      ],
+      "memory": 512,
+      "image": "",
+      "healthCheck": {
+        "retries": 3,
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:3000/actuator/health || exit 1"
+        ],
+        "timeout": 5,
+        "interval": 30,
+        "startPeriod": 60
+      },
+      "essential": true,
+      "name": "userApi"
+    }
+]
